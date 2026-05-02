@@ -10,17 +10,19 @@ class StoryController extends Controller
 {
     public function index()
     {
-
+    // viewのstories.index.blade.php を表示
         return view('stories.index');
     }
 
     public function create()
     {
+    // viewのstories.create.blade.php を表示
         return view('stories.create');
     }
 
     public function store(Request $request)
     {
+    // フォームから送信されたデータを取得
         $title = $request->get('title');
         $author = $request->get('author');
         $intro = $request->get('intro');
@@ -28,6 +30,7 @@ class StoryController extends Controller
         $conversion = $request->get('conversion');
         $ending = $request->get('ending');
 
+    // storiesテーブルに取得したデータを保存
         $story = Story::create([
             'title' => $title,
             'author' => $author,
@@ -36,6 +39,7 @@ class StoryController extends Controller
             'conversion' => $conversion,
             'ending' => $ending,
         ]);
+        // 保存したデータのidを取得して、showアクション(views/stories/show/{id})にリダイレクト
         return redirect()->route('stories.show', ['id' => $story->id]);
     }
     public function show($id)
