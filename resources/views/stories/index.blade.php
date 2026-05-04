@@ -17,6 +17,9 @@
                 なかま：{{ $story->friend }} / てき：{{ $story->enemy }}
             </div>
             <a href="{{ route('stories.show', ['id' => $story->id]) }}" class="btn-secondary" style="font-size:12px;padding:6px 14px;">くわしくみる</a>
+            <form method="POST" action="{{ route('stories.like', ['id' => $story->id]) }}">
+            @csrf
+            <button type="submit">❤️ {{ $story->likes }}</button></form>
         </div>
         @endforeach
     </div>

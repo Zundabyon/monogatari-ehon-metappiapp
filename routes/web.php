@@ -11,3 +11,6 @@ Route::get('/stories/create',  [StoryController::class, 'create']) ->name('stori
 Route::post('/stories',        [StoryController::class, 'store'])  ->name('stories.store');
 Route::get('/stories/shuffle', [StoryController::class, 'shuffle'])->name('stories.shuffle');
 Route::get('/stories/{id}',    [StoryController::class, 'show'])   ->name('stories.show');
+Route::post('/stories/{id}/like', [StoryController::class, 'like'])->name('stories.like');
+Route::view('/terms', 'terms')->name('terms');
+Route::view('/privacy', 'privacy')->name('privacy');

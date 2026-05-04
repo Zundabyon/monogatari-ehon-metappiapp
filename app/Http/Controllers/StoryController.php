@@ -94,4 +94,12 @@ class StoryController extends Controller
             'result' => $result,
         ]);
     }
+    public function like($id)
+    {
+        $story = Story::find($id);
+        if ($story) {
+        $story->increment('likes');
+        }
+        return redirect()->route('stories.index');
+    }
 }

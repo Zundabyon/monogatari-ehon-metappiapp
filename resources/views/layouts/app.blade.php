@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ぼくの・わたしのものがたり</title>
+    <title>ぼくの わたしのえほん</title>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,7 +23,7 @@
         }
         .site-title {
             font-family: 'Zen Maru Gothic', sans-serif;
-            font-size: 28px;
+            font-size: 24px;
             color: #27500A;
             letter-spacing: 2px;
             margin-bottom: 6px;
@@ -132,7 +132,7 @@
         <header class="site-header">
             <div class="site-title">ぼくの・わたしのものがたり</div>
             <nav class="site-nav">
-                <a href="{{ route('home') }}" class="nav-link">トップ</a>
+                <a href="{{ route('home') }}" class="nav-link">トップへ</a>
                 <a href="{{ route('stories.create') }}" class="nav-link">ものがたりをつくる</a>
                 <a href="{{ route('stories.index') }}" class="nav-link">みんなのものがたり</a>
             </nav>
@@ -140,6 +140,15 @@
         <main>
             @yield('content')
         </main>
+
+        <footer style="text-align:center;margin-top:40px;padding:20px;font-size:12px;color:#97C459;">
+            <p style="font-family:'Zen Maru Gothic',sans-serif;color:#639922;margin-bottom:8px;">
+                おうちのひとへ →
+                <a href="{{ route('terms') }}" style="color:#639922;margin:0 8px;">利用規約</a>
+                <a href="{{ route('privacy') }}" style="color:#639922;margin:0 8px;">プライバシーポリシー</a>
+            </p>
+            <p style="margin-top:4px;">© 2026 ぼくの・わたしのものがたり</p>
+        </footer>
     </div>
 </body>
 </html>
