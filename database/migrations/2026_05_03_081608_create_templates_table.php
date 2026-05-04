@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stories', function (Blueprint $table) {
+        Schema::create('templates', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('author');
-            $table->text('intro');
-            $table->text('develop');
-            $table->text('conversion');
-            $table->text('ending');
+            $table->foreignId('genre_id')->constrained();
+            $table->text('intro_template');
+            $table->text('develop_template');
+            $table->text('conversion_template');
+            $table->text('ending_template');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stories');
+        Schema::dropIfExists('templates');
     }
 };

@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Story extends Model
+class Template extends Model
 {
     protected $fillable = [
-        'hero',
-        'friend',
-        'enemy',
-        'key_item',
         'genre_id',
+        'intro_template',
+        'develop_template',
+        'conversion_template',
+        'ending_template',
     ];
 
     public function genre()
