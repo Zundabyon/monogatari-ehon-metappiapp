@@ -1,11 +1,106 @@
-<div>
-    <h1>{{ $story->hero }}のものがたり</h1>
+@extends('layouts.app')
 
-    <p>はじまり：{{ $result['intro'] }}</p>
-    <p>つぎに：{{ $result['develop'] }}</p>
-    <p>そして：{{ $result['conversion'] }}</p>
-    <p>おわり：{{ $result['ending'] }}</p>
+@section('content')
+<div class="page-card" id="book">
+    <div style="text-align:center;margin-bottom:20px;">
+        <div class="tag">{{ $story->genre->name_ja }}</div>
+        <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:24px;color:#27500A;margin-top:8px;">
+            {{ $story->hero }}のものがたり
+        </div>
+    </div>
 
-    <a href="{{ route('stories.create') }}">もういちどつくる</a>
-    <a href="{{ route('stories.index') }}">みんなのをみる</a>
+    <div id="pages">
+        {{-- 表紙 --}}
+        <div class="book-page active" data-page="0">
+            <img src="{{ asset('images/genres/' . $story->genre->name_ja . '/cover.png') }}"
+                 onerror="this.style.display='none'"
+                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+            <div style="text-align:center;font-family:'Zen Maru Gothic',sans-serif;font-size:18px;color:#3B6D11;">
+                このものがたりのはじまり<br>▶ つぎのページをめくってね
+            </div>
+        </div>
+
+        {{-- はじまり --}}
+        <div class="book-page" data-page="1" style="display:none;">
+            <img src="{{ asset('images/genres/' . $story->genre->name_ja . '/intro.png') }}"
+                 onerror="this.style.display='none'"
+                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+            <div class="tag">はじまり</div>
+            <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['intro'] }}</div>
+        </div>
+
+        {{-- つぎに --}}
+        <div class="book-page" data-page="2" style="display:none;">
+            <img src="{{ asset('images/genres/' . $story->genre->name_ja . '/develop.png') }}"
+                 onerror="this.style.display='none'"
+                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+            <div class="tag">つぎに</div>
+            <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['develop'] }}</div>
+        </div>
+
+        {{-- そして --}}
+        <div class="book-page" data-page="3" style="display:none;">
+            <img src="{{ asset('images/genres/' . $story->genre->name_ja . '/conversion.png') }}"
+                 onerror="this.style.display='none'"
+                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+            <div class="tag">そして</div>
+            <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['conversion'] }}</div>
+        </div>
+
+        {{-- おわり --}}
+        <div class="book-page" data-page="4" style="display:none;">
+            <img src="{{ asset('images/genres/' . $story->genre->name_ja . '/ending.png') }}"
+                 onerror="this.style.display='none'"
+                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+            <div class="tag">おわり</div>
+            <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['ending'] }}</div>
+        </div>
+
+        {{-- 裏表紙 --}}
+        <div class="book-page" data-page="5" style="display:none;">
+            <img src="{{ asset('images/genres/' . $story->genre->name_ja . '/back.png') }}"
+                 onerror="this.style.display='none'"
+                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+            <div style="text-align:center;font-family:'Zen Maru Gothic',sans-serif;font-size:18px;color:#3B6D11;">
+                おしまい 🌿
+            </div>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
+                <a href="{{ route('stories.create') }}" class="btn-primary">もういちどつくる</a>
+                <a href="{{ route('stories.index') }}" class="btn-secondary">みんなのをみる</a>
+            </div>
+        </div>
+    </div>
+
+    {{-- ページめくりナビ --}}
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;">
+        <button class="btn-secondary" id="prev-btn" onclick="changePage(-1)" disabled>◀ まえ</button>
+        <div id="dots" style="display:flex;gap:6px;">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <button class="btn-primary" id="next-btn" onclick="changePage(1)">つぎ ▶</button>
+    </div>
 </div>
+
+<style>
+.dot { width:8px;height:8px;border-radius:50%;background:#C0DD97;display:inline-block; }
+.dot.active { background:#639922; }
+</style>
+
+<script>
+let current = 0;
+const total = 6;
+function changePage(dir) {
+    document.querySelectorAll('.book-page')[current].style.display = 'none';
+    current += dir;
+    document.querySelectorAll('.book-page')[current].style.display = 'block';
+    document.querySelectorAll('.dot').forEach((d,i) => d.className = i===current ? 'dot active' : 'dot');
+    document.getElementById('prev-btn').disabled = current === 0;
+    document.getElementById('next-btn').disabled = current === total - 1;
+}
+</script>
+@endsection

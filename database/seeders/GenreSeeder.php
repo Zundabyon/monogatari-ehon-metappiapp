@@ -10,21 +10,21 @@ class GenreSeeder extends Seeder
     public function run(): void
     {
     $genres = [
-        ['name' => 'Adventure'],
-        ['name' => 'Magic'],
-        ['name' => 'Sentai'],
-        ['name' => 'Animal'],
-        ['name' => 'Space'],
-        ['name' => 'Ninja'],
-        ['name' => 'Princess'],
-        ['name' => 'Detective'],
-        ['name' => 'Sports'],
-        ['name' => 'Folktale'],
-        ['name' => 'Police'],
-        ['name' => 'Firefighter'],
-        ['name' => 'Dinosaur'],
-        ['name' => 'Pirate'],
-        ['name' => 'Robot'],
+        ['name' => 'Adventure',   'name_ja' => 'ぼうけん'],
+        ['name' => 'Magic',       'name_ja' => 'まほう'],
+        ['name' => 'Sentai',      'name_ja' => 'せんたい'],
+        ['name' => 'Animal',      'name_ja' => 'どうぶつ'],
+        ['name' => 'Space',       'name_ja' => 'うちゅう'],
+        ['name' => 'Ninja',       'name_ja' => 'にんじゃ'],
+        ['name' => 'Princess',    'name_ja' => 'おひめさま'],
+        ['name' => 'Detective',   'name_ja' => 'かいけつ'],
+        ['name' => 'Sports',      'name_ja' => 'スポーツ'],
+        ['name' => 'Folktale',    'name_ja' => 'むかしばなし'],
+        ['name' => 'Police',      'name_ja' => 'おまわりさん'],
+        ['name' => 'Firefighter', 'name_ja' => 'しょうぼうし'],
+        ['name' => 'Dinosaur',    'name_ja' => 'きょうりゅう'],
+        ['name' => 'Pirate',      'name_ja' => 'かいぞく'],
+        ['name' => 'Robot',       'name_ja' => 'ロボット'],
     ];
         foreach ($genres as $genre) {
             Genre::create($genre);
