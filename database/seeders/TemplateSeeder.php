@@ -132,8 +132,14 @@ class TemplateSeeder extends Seeder
             ],
         ];
 
-        foreach ($templates as $template) {
-            Template::create($template);
-        }
+            foreach ($templates as $template) {
+                Template::firstOrCreate(
+                    [
+                        'genre_id'       => $template['genre_id'],
+                        'intro_template' => $template['intro_template'],
+                    ],
+                    $template
+                );
+            }
     }
 }
