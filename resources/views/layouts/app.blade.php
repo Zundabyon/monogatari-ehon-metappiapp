@@ -125,6 +125,12 @@
             display: inline-block;
         }
         .btn-secondary:hover { background: #EAF3DE; }
+
+        @keyframes spin {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
     </style>
 </head>
 <body>
