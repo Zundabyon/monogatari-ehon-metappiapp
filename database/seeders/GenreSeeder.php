@@ -36,4 +36,3 @@ class GenreSeeder extends Seeder
         }
     }
 }
-EOF
