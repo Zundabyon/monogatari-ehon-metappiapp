@@ -8,7 +8,7 @@
         きみだけのオリジナルのものがたりをつくろう！
     </div>
     <div style="font-size:14px;color:#639922;margin-bottom:32px;">
-        すきなキャラクターをいれると、ふしぎなものがたりができるよ
+        すきなものやなまえをいれると、じぶんだけのものがたりができるよ!
     </div>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
         <a href="{{ route('stories.create') }}" class="btn-primary">ものがたりをつくる</a>

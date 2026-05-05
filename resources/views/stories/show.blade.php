@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-card" id="book">
     <div style="text-align:center;margin-bottom:20px;">
-        <div class="tag">{{ $story->genre->name }}</div>
+        <div class="tag">{{ $story->genre->name_ja }}</div>
         <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:24px;color:#27500A;margin-top:8px;">
             {{ $story->hero }}のものがたり
         </div>
@@ -14,7 +14,7 @@
         <div class="book-page active" data-page="0">
             <img src="{{ asset('images/genres/' . $story->genre->name . '/cover.png') }}"
                  onerror="this.style.display='none'"
-                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+                 style="width:100%;height:320px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
             <div style="text-align:center;font-family:'Zen Maru Gothic',sans-serif;font-size:18px;color:#3B6D11;">
                 このものがたりのはじまり<br>▶ つぎのページをめくってね
             </div>
@@ -24,7 +24,7 @@
         <div class="book-page" data-page="1" style="display:none;">
             <img src="{{ asset('images/genres/' . $story->genre->name . '/intro.png') }}"
                  onerror="this.style.display='none'"
-                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+                 style="width:100%;height:320px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
             <div class="tag">はじまり</div>
             <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['intro'] }}</div>
         </div>
@@ -33,7 +33,7 @@
         <div class="book-page" data-page="2" style="display:none;">
             <img src="{{ asset('images/genres/' . $story->genre->name . '/develop.png') }}"
                  onerror="this.style.display='none'"
-                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+                 style="width:100%;height:320px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
             <div class="tag">つぎに</div>
             <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['develop'] }}</div>
         </div>
@@ -42,7 +42,7 @@
         <div class="book-page" data-page="3" style="display:none;">
             <img src="{{ asset('images/genres/' . $story->genre->name . '/conversion.png') }}"
                  onerror="this.style.display='none'"
-                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+                 style="width:100%;height:320px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
             <div class="tag">そして</div>
             <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['conversion'] }}</div>
         </div>
@@ -51,7 +51,7 @@
         <div class="book-page" data-page="4" style="display:none;">
             <img src="{{ asset('images/genres/' . $story->genre->name . '/ending.png') }}"
                  onerror="this.style.display='none'"
-                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+                 style="width:100%;height:320px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
             <div class="tag">おわり</div>
             <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['ending'] }}</div>
         </div>
@@ -60,7 +60,7 @@
         <div class="book-page" data-page="5" style="display:none;">
             <img src="{{ asset('images/genres/' . $story->genre->name . '/back.png') }}"
                  onerror="this.style.display='none'"
-                 style="width:100%;height:220px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+                 style="width:100%;height:320px;object-fit:cover;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
             <div style="text-align:center;font-family:'Zen Maru Gothic',sans-serif;font-size:18px;color:#3B6D11;">
                 おしまい 🌿
             </div>
@@ -89,6 +89,11 @@
 <style>
 .dot { width:8px;height:8px;border-radius:50%;background:#C0DD97;display:inline-block; }
 .dot.active { background:#639922; }
+
+button:disabled {
+    opacity: 0;
+    pointer-events: none;
+}
 </style>
 
 <script>
