@@ -1,3 +1,4 @@
+cat > database/seeders/GenreSeeder.php << 'EOF'
 <?php
 
 namespace Database\Seeders;
@@ -26,3 +27,13 @@ class GenreSeeder extends Seeder
             ['name' => 'Pirate',      'name_ja' => 'かいぞく'],
             ['name' => 'Robot',       'name_ja' => 'ロボット'],
         ];
+
+        foreach ($genres as $genre) {
+            Genre::firstOrCreate(
+                ['name' => $genre['name']],
+                ['name_ja' => $genre['name_ja']]
+            );
+        }
+    }
+}
+EOF
