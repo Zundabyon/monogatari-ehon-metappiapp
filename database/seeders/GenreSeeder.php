@@ -27,7 +27,8 @@ class GenreSeeder extends Seeder
         ['name' => 'Robot',       'name_ja' => 'ロボット'],
     ];
         foreach ($genres as $genre) {
-            Genre::create($genre);
-        }
-    }
-}
+            Genre::firstOrCreate(
+                ['name' => $genre['name']],
+                ['name_ja' => $genre['name_ja']]
+            );
+       }  }
