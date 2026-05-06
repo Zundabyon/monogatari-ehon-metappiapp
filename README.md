@@ -165,7 +165,7 @@
 | フレームワーク | Laravel 13.7               | RailsでMVC・ORM・ルーティングの概念を習得済みのため、思想が近いLaravelを選定 |
 | 言語           | PHP 8.4                    | Laravel採用に伴い選定。PHP実践力を高めることが目的                           |
 | DB             | MySQL                      | Laravel Sailに標準搭載のため採用                                             |
-| 開発環境       | Docker（Laravel Sail）     | 環境構築の手間を省き、Laravel・PHPの学習に集中するため                       |
+| 開発環境       | Railway Laravel Sail）     | Laravel および MySQLとの相性が良いため、採用                                 |
 | フロントエンド | Blade テンプレート / CSS   | Laravelの標準テンプレートエンジン。追加ライブラリなしで実装できるため        |
 | フォント       | Zen Maru Gothic / Klee One | 絵本らしいやわらかい雰囲気を表現するためGoogle Fontsより選定                 |
 
