@@ -4,7 +4,7 @@
 
 ## アプリURL:
 
-https://monogatari-ehon-metappiapp-production.up.railway.app/stories
+https://monogatari-ehon-metappiapp-production.up.railway.app
 
 ## 1. サービス概要
 
