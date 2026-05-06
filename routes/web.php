@@ -14,3 +14,4 @@ Route::get('/stories/{id}',    [StoryController::class, 'show'])   ->name('stori
 Route::post('/stories/{id}/like', [StoryController::class, 'like'])->name('stories.like');
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/privacy', 'privacy')->name('privacy');
+Route::view('/creater', 'creater')->name('creater');

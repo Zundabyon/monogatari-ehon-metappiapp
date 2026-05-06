@@ -152,6 +152,7 @@
                 おうちのひとへ →
                 <a href="{{ route('terms') }}" style="color:#639922;margin:0 8px;">利用規約</a>
                 <a href="{{ route('privacy') }}" style="color:#639922;margin:0 8px;">プライバシーポリシー</a>
+                <a href="{{ route('creater') }}" style="color:#639922;margin:0 8px;">編集後記</a>
             </p>
             <p style="margin-top:4px;">© 2026 ぼくの・わたしのものがたり</p>
         </footer>
