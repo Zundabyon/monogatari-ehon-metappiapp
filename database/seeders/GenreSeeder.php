@@ -1,4 +1,3 @@
-cat > database/seeders/GenreSeeder.php << 'EOF'
 <?php
 
 namespace Database\Seeders;
