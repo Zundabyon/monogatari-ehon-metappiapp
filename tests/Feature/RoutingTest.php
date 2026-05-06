@@ -13,7 +13,6 @@ class RoutingTest extends TestCase
         $response->assertStatus(200);
     }
 
-    // ↓ここに追加してくださいな
     public function test_stories_index_returns_200(): void
     {
         $response = $this-> get('/stories');
