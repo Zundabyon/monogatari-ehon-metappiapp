@@ -2,7 +2,7 @@
 
 # ぼくの・わたしのえほん 📖
 
-## アプリURL:
+## アプリURL:https://monogatari-ehon-metappiapp-production.up.railway.app/stories
 
 ## 1. サービス概要
 
@@ -192,7 +192,7 @@
 
 - **めたっぴ**（Ogasawara Hiroki）
 - RUNTEQ72期受講生
-- GitHub: [@Zundabyon](https://github.com/Zundabyon)
+- GitHub: [@Zundabyon](https://github.com/Zundabyon/monogatari-ehon-metappiapp)
 - [Qiita: Rails経験者がLaravelでMVCを一通り実装](https://qiita.com/)
 
 ---
