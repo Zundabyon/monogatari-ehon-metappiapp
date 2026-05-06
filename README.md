@@ -1,8 +1,10 @@
-![トップページ](public/images/top.png)
+[![Image from Gyazo](https://i.gyazo.com/55fc4c2a8876777d886c83d5b3b8c65b.png)](https://gyazo.com/55fc4c2a8876777d886c83d5b3b8c65b)
 
 # ぼくの・わたしのえほん 📖
 
-## アプリURL:https://monogatari-ehon-metappiapp-production.up.railway.app/stories
+## アプリURL:
+
+https://monogatari-ehon-metappiapp-production.up.railway.app/stories
 
 ## 1. サービス概要
 
