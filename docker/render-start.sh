@@ -15,7 +15,9 @@ mkdir -p \
 
 chown -R www-data:www-data storage bootstrap/cache
 
-php artisan optimize:clear
+# A fresh database does not have the cache table yet. Use the in-memory cache
+# while clearing old bootstrap files so the first deploy can reach migrations.
+CACHE_STORE=array php artisan optimize:clear
 
 attempt=1
 max_attempts=10
