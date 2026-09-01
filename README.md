@@ -4,7 +4,7 @@
 
 ## アプリURL:
 
-https://monogatari-ehon-metappiapp-production.up.railway.app
+
 
 ## 1. サービス概要
 
@@ -167,7 +167,7 @@ https://monogatari-ehon-metappiapp-production.up.railway.app
 | フレームワーク | Laravel 13.7               | RailsでMVC・ORM・ルーティングの概念を習得済みのため、思想が近いLaravelを選定 |
 | 言語           | PHP 8.4                    | Laravel採用に伴い選定。PHP実践力を高めることが目的                           |
 | DB             | MySQL                      | Laravel Sailに標準搭載のため採用                                             |
-| 開発環境       | Railway Laravel Sail）     | Laravel および MySQLとの相性が良いため、採用                                 |
+| 開発環境       | Railway Laravel Sail　     | Laravel および MySQLとの相性が良いため、採用                                 |
 | フロントエンド | Blade テンプレート / CSS   | Laravelの標準テンプレートエンジン。追加ライブラリなしで実装できるため        |
 | フォント       | Zen Maru Gothic / Klee One | 絵本らしいやわらかい雰囲気を表現するためGoogle Fontsより選定                 |
 
@@ -192,9 +192,9 @@ https://monogatari-ehon-metappiapp-production.up.railway.app
 
 ## 開発者
 
-- **めたっぴ**（Ogasawara Hiroki）
+- **めたっぴ**（Ogasawara Yuuki）
 - RUNTEQ72期受講生
 - GitHub: [@Zundabyon](https://github.com/Zundabyon/monogatari-ehon-metappiapp)
-- [Qiita: Rails経験者がLaravelでMVCを一通り実装](https://qiita.com/)
+- [Qiita: Rails学習者がLaravelでMVCを一通り実装](https://qiita.com/)
 
 ---
