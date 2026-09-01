@@ -39,6 +39,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         libicu-dev \
         libonig-dev \
+        libpq-dev \
         libzip-dev \
         unzip \
     && docker-php-ext-install -j"$(nproc)" \
@@ -47,6 +48,7 @@ RUN apt-get update \
         mbstring \
         opcache \
         pdo_mysql \
+        pdo_pgsql \
         zip \
     && a2enmod headers rewrite \
     && echo "ServerName localhost" > /etc/apache2/conf-available/server-name.conf \

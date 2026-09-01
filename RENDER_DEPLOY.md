@@ -1,6 +1,6 @@
 # Render デプロイ手順
 
-この構成では、Laravel本体をRenderの無料Web Service、データベースをTiDB Cloud Starterで動かします。
+この構成では、Laravel本体をRenderの無料Web Service、PostgreSQLデータベースをNEONで動かします。
 
 ## 1. APP_KEYを確認する
 
@@ -12,20 +12,20 @@
 
 この値はGitへコミットしません。
 
-## 2. TiDB Cloud Starterを作成する
+## 2. NEONデータベースを作成する
 
-TiDB CloudでStarterクラスタを作り、接続画面から次の値を控えます。
+NEONでプロジェクトを作り、プロジェクト画面の `Connect` を開きます。表示された接続文字列から次の値を控えます。
 
 - Host
-- Port（通常は4000）
+- Port（通常は5432）
 - Database
 - Username
 - Password
 
-データベースがまだない場合は、TiDB CloudのSQL Editorで作成します。
+初期状態では、Databaseは通常 `neondb` です。接続文字列には次のように表示されます。
 
-```sql
-CREATE DATABASE monogatari CHARACTER SET utf8mb4;
+```text
+postgresql://ユーザー名:パスワード@ホスト名/neondb?sslmode=require
 ```
 
 ## 3. Render Blueprintを作成する
@@ -41,11 +41,11 @@ CREATE DATABASE monogatari CHARACTER SET utf8mb4;
 | --- | --- |
 | `APP_URL` | Renderで作成されるURL（例: `https://monogatari-ehon-metappiapp.onrender.com`） |
 | `APP_KEY` | 手順1で控えた値 |
-| `DB_HOST` | TiDB CloudのHost |
-| `DB_PORT` | TiDB CloudのPort |
-| `DB_DATABASE` | `monogatari` |
-| `DB_USERNAME` | TiDB CloudのUsername |
-| `DB_PASSWORD` | TiDB CloudのPassword |
+| `DB_HOST` | NEONの接続文字列にあるHost |
+| `DB_PORT` | `5432` |
+| `DB_DATABASE` | 通常は `neondb` |
+| `DB_USERNAME` | NEONの接続文字列にあるUsername |
+| `DB_PASSWORD` | NEONの接続文字列にあるPassword |
 
 ## 4. デプロイを確認する
 
@@ -56,5 +56,6 @@ CREATE DATABASE monogatari CHARACTER SET utf8mb4;
 ## 注意
 
 - Render無料サービスは、アクセスが15分ないと停止します。次のアクセス時は起動まで時間がかかります。
+- NEONとの接続にはSSLを使用します。`render.yaml` で `DB_SSLMODE=require` を設定済みです。
 - `storage` 内へアップロードしたファイルは再起動時に消えます。このアプリの現在の画像は `public/images` に含まれるため影響を受けません。
 - 本番環境には固定パスワードのテストユーザーを作成しません。そのため、`DatabaseSeeder` 全体は自動実行しない構成です。
