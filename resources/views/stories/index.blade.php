@@ -14,7 +14,7 @@
         </div>
         <picture>
         @if (app()->environment('production'))
-        <source srcset="{{ asset('images/genres/' . $story->genre->name . '/cover.webp') }}" type="image/webp">
+        <source srcset="{{ asset('images/genres/' . $story->genre->name . '/cover-thumb.webp') }}" type="image/webp">
         @endif
         <img src="{{ asset('images/genres/' . $story->genre->name . '/cover.png') }}"
             loading="lazy"
@@ -36,6 +36,9 @@
             <button type="submit">❤️ {{ $story->likes }}</button></form>
         </div>
         @endforeach
+    </div>
+    <div style="margin-top:24px;">
+        {{ $stories->links() }}
     </div>
     <div style="text-align:center;margin-top:24px;">
         <a href="{{ route('stories.create') }}" class="btn-primary">あたらしくつくる🌟</a>

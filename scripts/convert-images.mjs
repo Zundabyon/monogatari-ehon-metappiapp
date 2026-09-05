@@ -28,9 +28,18 @@ await Promise.all(images.map(async (imagePath) => {
     const webpPath = imagePath.replace(/\.(png|jpe?g)$/i, '.webp');
 
     await sharp(imagePath)
-        .resize({ width: 1200, withoutEnlargement: true })
-        .webp({ quality: 78, effort: 4 })
+        .resize({ width: 1536, withoutEnlargement: true })
+        .webp({ quality: 80, effort: 4 })
         .toFile(webpPath);
+
+    if (path.basename(imagePath).toLowerCase() === 'cover.png') {
+        const thumbnailPath = path.join(path.dirname(imagePath), 'cover-thumb.webp');
+
+        await sharp(imagePath)
+            .resize({ width: 440, height: 240, fit: 'cover' })
+            .webp({ quality: 80, effort: 4 })
+            .toFile(thumbnailPath);
+    }
 
     console.log(`Generated ${path.relative(process.cwd(), webpPath)}`);
 }));

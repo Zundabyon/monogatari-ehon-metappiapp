@@ -19,9 +19,9 @@
                 </div>
                  <picture>
                 @if (app()->environment('production'))
-                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/cover.webp') }}" type="image/webp">
+                 <source data-srcset="{{ asset('images/genres/' . $story->genre->name . '/cover.webp') }}" type="image/webp">
                 @endif
-                 <img src="{{ asset('images/genres/' . $story->genre->name . '/cover.png') }}"
+                 <img data-src="{{ asset('images/genres/' . $story->genre->name . '/cover.png') }}"
                      onerror="this.style.display='none';document.getElementById('loading-page-0').style.display='none'"
                      onload="document.getElementById('loading-page-0').style.display='none'"
                      style="width:100%;border-radius:12px;border:2px solid #C0DD97;position:relative;z-index:1;">
@@ -41,9 +41,9 @@
                 </div>
                  <picture>
                 @if (app()->environment('production'))
-                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/intro.webp') }}" type="image/webp">
+                 <source data-srcset="{{ asset('images/genres/' . $story->genre->name . '/intro.webp') }}" type="image/webp">
                 @endif
-                 <img src="{{ asset('images/genres/' . $story->genre->name . '/intro.png') }}"
+                 <img data-src="{{ asset('images/genres/' . $story->genre->name . '/intro.png') }}"
                      loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-1').style.display='none'"
                      onload="document.getElementById('loading-page-1').style.display='none'"
@@ -63,9 +63,9 @@
                 </div>
                  <picture>
                 @if (app()->environment('production'))
-                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/develop.webp') }}" type="image/webp">
+                 <source data-srcset="{{ asset('images/genres/' . $story->genre->name . '/develop.webp') }}" type="image/webp">
                 @endif
-                 <img src="{{ asset('images/genres/' . $story->genre->name . '/develop.png') }}"
+                 <img data-src="{{ asset('images/genres/' . $story->genre->name . '/develop.png') }}"
                      loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-2').style.display='none'"
                      onload="document.getElementById('loading-page-2').style.display='none'"
@@ -85,9 +85,9 @@
                 </div>
                  <picture>
                 @if (app()->environment('production'))
-                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/conversion.webp') }}" type="image/webp">
+                 <source data-srcset="{{ asset('images/genres/' . $story->genre->name . '/conversion.webp') }}" type="image/webp">
                 @endif
-                 <img src="{{ asset('images/genres/' . $story->genre->name . '/conversion.png') }}"
+                 <img data-src="{{ asset('images/genres/' . $story->genre->name . '/conversion.png') }}"
                      loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-3').style.display='none'"
                      onload="document.getElementById('loading-page-3').style.display='none'"
@@ -107,9 +107,9 @@
                 </div>
                  <picture>
                 @if (app()->environment('production'))
-                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/ending.webp') }}" type="image/webp">
+                 <source data-srcset="{{ asset('images/genres/' . $story->genre->name . '/ending.webp') }}" type="image/webp">
                 @endif
-                 <img src="{{ asset('images/genres/' . $story->genre->name . '/ending.png') }}"
+                 <img data-src="{{ asset('images/genres/' . $story->genre->name . '/ending.png') }}"
                      loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-4').style.display='none'"
                      onload="document.getElementById('loading-page-4').style.display='none'"
@@ -129,9 +129,9 @@
                 </div>
                  <picture>
                 @if (app()->environment('production'))
-                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/back.webp') }}" type="image/webp">
+                 <source data-srcset="{{ asset('images/genres/' . $story->genre->name . '/back.webp') }}" type="image/webp">
                 @endif
-                 <img src="{{ asset('images/genres/' . $story->genre->name . '/back.png') }}"
+                 <img data-src="{{ asset('images/genres/' . $story->genre->name . '/back.png') }}"
                      loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-5').style.display='none'"
                      onload="document.getElementById('loading-page-5').style.display='none'"
@@ -176,9 +176,29 @@ button:disabled { opacity:0;pointer-events:none; }
 <script>
 let current = 0;
 const total = 6;
+
+function loadPageImage(page) {
+    const pageElement = document.querySelectorAll('.book-page')[page];
+    const source = pageElement.querySelector('source[data-srcset]');
+    const image = pageElement.querySelector('img[data-src]');
+
+    if (!image || image.dataset.loaded === 'true') {
+        return;
+    }
+
+    if (source) {
+        source.srcset = source.dataset.srcset;
+    }
+    image.src = image.dataset.src;
+    image.dataset.loaded = 'true';
+}
+
+loadPageImage(current);
+
 function changePage(dir) {
     document.querySelectorAll('.book-page')[current].style.display = 'none';
     current += dir;
+    loadPageImage(current);
     document.querySelectorAll('.book-page')[current].style.display = 'block';
     document.querySelectorAll('.dot').forEach((d,i) => d.className = i===current ? 'dot active' : 'dot');
     document.getElementById('prev-btn').disabled = current === 0;
