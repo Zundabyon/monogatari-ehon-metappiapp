@@ -17,10 +17,13 @@
                     <div style="width:28px;height:28px;border:3px solid #C0DD97;border-top:3px solid #639922;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
-                <img src="{{ asset('images/genres/' . $story->genre->name . '/cover.png') }}"
+                 <picture>
+                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/cover.webp') }}" type="image/webp">
+                 <img src="{{ asset('images/genres/' . $story->genre->name . '/cover.png') }}"
                      onerror="this.style.display='none';document.getElementById('loading-page-0').style.display='none'"
                      onload="document.getElementById('loading-page-0').style.display='none'"
                      style="width:100%;border-radius:12px;border:2px solid #C0DD97;position:relative;z-index:1;">
+                 </picture>
             </div>
             <div style="text-align:center;font-family:'Zen Maru Gothic',sans-serif;font-size:18px;color:#3B6D11;">
                 このものがたりのはじまり<br>▶ つぎのページをめくってね
@@ -34,10 +37,14 @@
                     <div style="width:28px;height:28px;border:3px solid #C0DD97;border-top:3px solid #639922;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
-                <img src="{{ asset('images/genres/' . $story->genre->name . '/intro.png') }}"
+                 <picture>
+                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/intro.webp') }}" type="image/webp">
+                 <img src="{{ asset('images/genres/' . $story->genre->name . '/intro.png') }}"
+                     loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-1').style.display='none'"
                      onload="document.getElementById('loading-page-1').style.display='none'"
                      style="width:100%;border-radius:12px;border:2px solid #C0DD97;position:relative;z-index:1;">
+                 </picture>
             </div>
             <div class="tag">はじまり</div>
             <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['intro'] }}</div>
@@ -50,10 +57,14 @@
                     <div style="width:28px;height:28px;border:3px solid #C0DD97;border-top:3px solid #639922;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
-                <img src="{{ asset('images/genres/' . $story->genre->name . '/develop.png') }}"
+                 <picture>
+                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/develop.webp') }}" type="image/webp">
+                 <img src="{{ asset('images/genres/' . $story->genre->name . '/develop.png') }}"
+                     loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-2').style.display='none'"
                      onload="document.getElementById('loading-page-2').style.display='none'"
                      style="width:100%;border-radius:12px;border:2px solid #C0DD97;position:relative;z-index:1;">
+                 </picture>
             </div>
             <div class="tag">つぎに</div>
             <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['develop'] }}</div>
@@ -66,10 +77,14 @@
                     <div style="width:28px;height:28px;border:3px solid #C0DD97;border-top:3px solid #639922;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
-                <img src="{{ asset('images/genres/' . $story->genre->name . '/conversion.png') }}"
+                 <picture>
+                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/conversion.webp') }}" type="image/webp">
+                 <img src="{{ asset('images/genres/' . $story->genre->name . '/conversion.png') }}"
+                     loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-3').style.display='none'"
                      onload="document.getElementById('loading-page-3').style.display='none'"
                      style="width:100%;border-radius:12px;border:2px solid #C0DD97;position:relative;z-index:1;">
+                 </picture>
             </div>
             <div class="tag">そして</div>
             <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['conversion'] }}</div>
@@ -82,10 +97,14 @@
                     <div style="width:28px;height:28px;border:3px solid #C0DD97;border-top:3px solid #639922;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
-                <img src="{{ asset('images/genres/' . $story->genre->name . '/ending.png') }}"
+                 <picture>
+                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/ending.webp') }}" type="image/webp">
+                 <img src="{{ asset('images/genres/' . $story->genre->name . '/ending.png') }}"
+                     loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-4').style.display='none'"
                      onload="document.getElementById('loading-page-4').style.display='none'"
                      style="width:100%;border-radius:12px;border:2px solid #C0DD97;position:relative;z-index:1;">
+                 </picture>
             </div>
             <div class="tag">おわり</div>
             <div style="font-size:16px;color:#173404;line-height:1.9;margin-top:10px;">{{ $result['ending'] }}</div>
@@ -98,10 +117,14 @@
                     <div style="width:28px;height:28px;border:3px solid #C0DD97;border-top:3px solid #639922;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
-                <img src="{{ asset('images/genres/' . $story->genre->name . '/back.png') }}"
+                 <picture>
+                 <source srcset="{{ asset('images/genres/' . $story->genre->name . '/back.webp') }}" type="image/webp">
+                 <img src="{{ asset('images/genres/' . $story->genre->name . '/back.png') }}"
+                     loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-5').style.display='none'"
                      onload="document.getElementById('loading-page-5').style.display='none'"
                      style="width:100%;border-radius:12px;border:2px solid #C0DD97;position:relative;z-index:1;">
+                 </picture>
             </div>
             <div style="text-align:center;font-family:'Zen Maru Gothic',sans-serif;font-size:18px;color:#3B6D11;">
                 おしまい 🌿

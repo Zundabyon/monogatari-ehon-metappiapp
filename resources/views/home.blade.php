@@ -2,8 +2,11 @@
 
 @section('content')
 <div class="page-card" style="text-align:center;padding:2.5rem;">
-     <img src="{{ asset('top.png') }}" onerror="this.style.display='none'"
+    <picture>
+    <source srcset="{{ asset('top.webp') }}" type="image/webp">
+    <img src="{{ asset('top.png') }}" onerror="this.style.display='none'"
      style="width:100%;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
+    </picture>
     <div style="font-size:15px;color:#639922;margin-bottom:8px;">
         きみだけのオリジナルのものがたりをつくろう！
     </div>

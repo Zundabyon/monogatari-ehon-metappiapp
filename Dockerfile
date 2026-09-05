@@ -7,6 +7,7 @@ RUN npm install --no-audit --no-fund
 
 COPY resources ./resources
 COPY public ./public
+COPY scripts ./scripts
 COPY vite.config.js ./
 RUN npm run build
 

@@ -12,10 +12,14 @@
             <div style="width:28px;height:28px;border:3px solid #C0DD97;border-top:3px solid #639922;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
             <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
         </div>
+        <picture>
+        <source srcset="{{ asset('images/genres/' . $story->genre->name . '/cover.webp') }}" type="image/webp">
         <img src="{{ asset('images/genres/' . $story->genre->name . '/cover.png') }}"
+            loading="lazy"
             onerror="this.style.display='none';document.getElementById('loading-{{ $story->id }}').style.display='none'"
             onload="document.getElementById('loading-{{ $story->id }}').style.display='none'"
             style="width:100%;height:120px;object-fit:cover;border-radius:10px;border:2px solid #EAF3DE;position:relative;z-index:1;">
+        </picture>
     </div>
                 <div class="tag" style="margin-bottom:8px;">{{ $story->genre->name }}</div>
             <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:15px;color:#27500A;margin-bottom:6px;">
