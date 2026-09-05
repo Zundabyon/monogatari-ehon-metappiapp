@@ -28,6 +28,7 @@ await Promise.all(images.map(async (imagePath) => {
     const webpPath = imagePath.replace(/\.(png|jpe?g)$/i, '.webp');
 
     await sharp(imagePath)
+        .resize({ width: 1200, withoutEnlargement: true })
         .webp({ quality: 78, effort: 4 })
         .toFile(webpPath);
 
