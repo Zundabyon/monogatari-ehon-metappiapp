@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Session\Middleware\StartSession;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StoryController;
 
 // ---Routeはここに追加---
-Route::get('/',                [HomeController::class,  'index'])  ->name('home');
+Route::get('/',                [HomeController::class,  'index'])
+	->withoutMiddleware(StartSession::class)
+	->name('home');
 Route::get('/stories',         [StoryController::class, 'index'])  ->name('stories.index');
 Route::get('/stories/create',  [StoryController::class, 'create']) ->name('stories.create');
 Route::post('/stories',        [StoryController::class, 'store'])  ->name('stories.store');
