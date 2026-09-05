@@ -64,7 +64,7 @@ RUN apt-get update \
 WORKDIR /var/www/html
 
 COPY --from=vendor --chown=www-data:www-data /app ./
-COPY --from=frontend --chown=www-data:www-data /app/public/build ./public/build
+COPY --from=frontend --chown=www-data:www-data /app/public ./public
 COPY docker/render-start.sh /usr/local/bin/render-start
 
 RUN chmod +x /usr/local/bin/render-start \
