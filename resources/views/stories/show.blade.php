@@ -18,7 +18,9 @@
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
                  <picture>
+                @if (app()->environment('production'))
                  <source srcset="{{ asset('images/genres/' . $story->genre->name . '/cover.webp') }}" type="image/webp">
+                @endif
                  <img src="{{ asset('images/genres/' . $story->genre->name . '/cover.png') }}"
                      onerror="this.style.display='none';document.getElementById('loading-page-0').style.display='none'"
                      onload="document.getElementById('loading-page-0').style.display='none'"
@@ -38,7 +40,9 @@
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
                  <picture>
+                @if (app()->environment('production'))
                  <source srcset="{{ asset('images/genres/' . $story->genre->name . '/intro.webp') }}" type="image/webp">
+                @endif
                  <img src="{{ asset('images/genres/' . $story->genre->name . '/intro.png') }}"
                      loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-1').style.display='none'"
@@ -58,7 +62,9 @@
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
                  <picture>
+                @if (app()->environment('production'))
                  <source srcset="{{ asset('images/genres/' . $story->genre->name . '/develop.webp') }}" type="image/webp">
+                @endif
                  <img src="{{ asset('images/genres/' . $story->genre->name . '/develop.png') }}"
                      loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-2').style.display='none'"
@@ -78,7 +84,9 @@
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
                  <picture>
+                @if (app()->environment('production'))
                  <source srcset="{{ asset('images/genres/' . $story->genre->name . '/conversion.webp') }}" type="image/webp">
+                @endif
                  <img src="{{ asset('images/genres/' . $story->genre->name . '/conversion.png') }}"
                      loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-3').style.display='none'"
@@ -98,7 +106,9 @@
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
                  <picture>
+                @if (app()->environment('production'))
                  <source srcset="{{ asset('images/genres/' . $story->genre->name . '/ending.webp') }}" type="image/webp">
+                @endif
                  <img src="{{ asset('images/genres/' . $story->genre->name . '/ending.png') }}"
                      loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-4').style.display='none'"
@@ -118,7 +128,9 @@
                     <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
                 </div>
                  <picture>
+                @if (app()->environment('production'))
                  <source srcset="{{ asset('images/genres/' . $story->genre->name . '/back.webp') }}" type="image/webp">
+                @endif
                  <img src="{{ asset('images/genres/' . $story->genre->name . '/back.png') }}"
                      loading="lazy"
                      onerror="this.style.display='none';document.getElementById('loading-page-5').style.display='none'"

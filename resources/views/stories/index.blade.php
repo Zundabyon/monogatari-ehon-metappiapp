@@ -13,7 +13,9 @@
             <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:10px;color:#639922;">よみこみちゅう...</div>
         </div>
         <picture>
+        @if (app()->environment('production'))
         <source srcset="{{ asset('images/genres/' . $story->genre->name . '/cover.webp') }}" type="image/webp">
+        @endif
         <img src="{{ asset('images/genres/' . $story->genre->name . '/cover.png') }}"
             loading="lazy"
             onerror="this.style.display='none';document.getElementById('loading-{{ $story->id }}').style.display='none'"
