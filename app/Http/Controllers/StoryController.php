@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Story;
 use App\Models\Genre;
 use App\Models\Template;
@@ -67,7 +69,32 @@ class StoryController extends Controller
     // みんなの物語一覧
     public function index()
     {
-        $stories = Story::with('genre')->latest()->simplePaginate(12);
+        $page = max(1, (int) request()->query('page', 1));
+        $cachedStories = Cache::remember("stories.index.page.{$page}", now()->addSeconds(30), function () use ($page) {
+            return Story::query()
+                ->select(['id', 'hero', 'friend', 'enemy', 'genre_id', 'likes', 'created_at'])
+                ->with(['genre:id,name,name_ja'])
+                ->latest()
+                ->forPage($page, 13)
+                ->get()
+                ->map(fn (Story $story) => $story->toArray())
+                ->all();
+        });
+
+        $stories = collect($cachedStories)->map(function (array $story) {
+            $storyObject = (object) $story;
+            $storyObject->genre = (object) $story['genre'];
+
+            return $storyObject;
+        });
+        $hasMorePages = $stories->count() > 12;
+        $paginatorItems = $stories->take(12);
+        $stories = new Paginator($paginatorItems, 12, $page, [
+            'path' => request()->url(),
+            'pageName' => 'page',
+        ]);
+        $stories->hasMorePagesWhen($hasMorePages);
+
         return view('stories.index', ['stories' => $stories]);
     }
 
