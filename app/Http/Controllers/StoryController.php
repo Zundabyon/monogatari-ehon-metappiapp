@@ -67,7 +67,7 @@ class StoryController extends Controller
     // みんなの物語一覧
     public function index()
     {
-        $stories = Story::with('genre')->latest()->paginate(12);
+        $stories = Story::with('genre')->latest()->simplePaginate(12);
         return view('stories.index', ['stories' => $stories]);
     }
 
