@@ -290,6 +290,14 @@
                 'どんなえほんができるかな？'
             ];
 
+            const homeReturnMessages = [
+                'さいしょにもどるよ'
+            ];
+
+            const storiesListMessages = [
+                'みんなのえほんをさがしています。'
+            ];
+
             if (loaderText) {
                 const pathName = window.location.pathname;
                 const isCreatePage = pathName.includes('/stories/create');
@@ -333,31 +341,24 @@
                 const isStoryRoute = /\/stories(?:\/|\?|$)/.test(href) || href.includes('/stories/create');
 
                 if (isSameOrigin(href) && !link.target && href === '/') {
-                    const currentText = loaderText ? loaderText.textContent : '';
-                    const messages = [
-                        'えほんのはじまりだよ！',
-                        'わくわくのたびがはじまるよ！',
-                        'さあ、はじめよう！',
-                        'おともだちとぼうけんをつくるよ',
-                        'ふしぎなえほんのはじまりだね！'
-                    ];
                     if (loaderText) {
-                        loaderText.textContent = messages[Math.floor(Math.random() * messages.length)];
+                        loaderText.textContent = homeReturnMessages[Math.floor(Math.random() * homeReturnMessages.length)];
+                    }
+                    showLoader();
+                    return;
+                }
+
+                if (isSameOrigin(href) && !link.target && href.includes('/stories')) {
+                    if (loaderText) {
+                        loaderText.textContent = storiesListMessages[Math.floor(Math.random() * storiesListMessages.length)];
                     }
                     showLoader();
                     return;
                 }
 
                 if (isSameOrigin(href) && !link.target && isStoryRoute) {
-                    const messages = [
-                        'えほんをつくっているよ！',
-                        'ちょっとまっててね',
-                        'えほんをかいているよ！',
-                        'ものがたりをつくってるよ！',
-                        'どんなえほんができるかな？'
-                    ];
                     if (loaderText) {
-                        loaderText.textContent = messages[Math.floor(Math.random() * messages.length)];
+                        loaderText.textContent = creatingMessages[Math.floor(Math.random() * creatingMessages.length)];
                     }
                     showLoader();
                 }
@@ -372,15 +373,8 @@
 
                 const isStorySubmit = /\/stories(?:\/|\?|$)/.test(action) || action.includes('/stories/create');
                 if (isStorySubmit) {
-                    const messages = [
-                        'えほんをつくっているよ！',
-                        'ちょっとまっててね',
-                        'えほんをかいているよ！',
-                        'ものがたりをつくってるよ！',
-                        'どんなえほんができるかな？'
-                    ];
                     if (loaderText) {
-                        loaderText.textContent = messages[Math.floor(Math.random() * messages.length)];
+                        loaderText.textContent = creatingMessages[Math.floor(Math.random() * creatingMessages.length)];
                     }
                     showLoader();
                 }
