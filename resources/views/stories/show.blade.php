@@ -164,6 +164,39 @@
 </div>
 
 <style>
+#book {
+    min-height: 760px;
+}
+
+.book-page {
+    min-height: 620px;
+    display: none;
+}
+
+.book-page.active {
+    display: block;
+}
+
+.book-page img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: #EAF3DE;
+    border-radius: 12px;
+}
+
+#loading-page-0,
+#loading-page-1,
+#loading-page-2,
+#loading-page-3,
+#loading-page-4,
+#loading-page-5 {
+    height: 220px;
+    min-height: 220px;
+}
+
 .dot { width:8px;height:8px;border-radius:50%;background:#C0DD97;display:inline-block; }
 .dot.active { background:#639922; }
 button:disabled { opacity:0;pointer-events:none; }
@@ -196,10 +229,21 @@ function loadPageImage(page) {
 loadPageImage(current);
 
 function changePage(dir) {
-    document.querySelectorAll('.book-page')[current].style.display = 'none';
+    const pages = document.querySelectorAll('.book-page');
+    if (current + dir < 0 || current + dir >= total) {
+        return;
+    }
+
+    pages[current].style.display = 'none';
     current += dir;
     loadPageImage(current);
-    document.querySelectorAll('.book-page')[current].style.display = 'block';
+    pages[current].style.display = 'block';
+    pages[current].classList.add('active');
+    pages.forEach((page, index) => {
+        if (index !== current) {
+            page.classList.remove('active');
+        }
+    });
     document.querySelectorAll('.dot').forEach((d,i) => d.className = i===current ? 'dot active' : 'dot');
     document.getElementById('prev-btn').disabled = current === 0;
     document.getElementById('next-btn').disabled = current === total - 1;
