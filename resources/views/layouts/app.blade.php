@@ -126,6 +126,103 @@
         }
         .btn-secondary:hover { background: #EAF3DE; }
 
+        .story-loader {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at top, #f3ead6 0%, #d6c7a7 32%, #2a2f3d 100%);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.7s ease;
+        }
+        .story-loader.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .story-book {
+            position: relative;
+            width: 230px;
+            height: 180px;
+            transform: rotate(-2deg);
+            animation: bookFloat 2.2s ease-in-out infinite alternate;
+        }
+        .story-page {
+            position: absolute;
+            left: 32px;
+            top: 28px;
+            width: 150px;
+            height: 120px;
+            background: linear-gradient(135deg, #fffdf9, #f5ead6);
+            border: 1px solid rgba(88, 65, 40, 0.25);
+            border-radius: 8px 18px 18px 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+            transform-origin: left center;
+        }
+        .story-page.page-1 { animation: pageTurn1 2.6s ease-in-out infinite; }
+        .story-page.page-2 { animation: pageTurn2 2.6s ease-in-out infinite; }
+        .story-page.page-3 { animation: pageTurn3 2.6s ease-in-out infinite; }
+        .story-page.page-4 { animation: pageTurn4 2.6s ease-in-out infinite; }
+        .story-bookmark {
+            position: absolute;
+            right: 18px;
+            top: 8px;
+            width: 18px;
+            height: 90px;
+            background: linear-gradient(180deg, #d89c6d, #b8713f);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+            box-shadow: 0 0 12px rgba(184, 109, 60, 0.45);
+            animation: bookmarkSwing 2.2s ease-in-out infinite;
+        }
+        .story-loader__text {
+            margin-top: 16px;
+            font-size: 0.82rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.9);
+            animation: textPulse 1.5s ease-in-out infinite;
+            font-family: 'Zen Maru Gothic', sans-serif;
+        }
+
+        @keyframes pageTurn1 {
+            0%, 18% { transform: rotateY(0deg) translateX(0); opacity: 0.9; }
+            32% { transform: rotateY(-72deg) translateX(6px); opacity: 1; }
+            52% { transform: rotateY(-90deg) translateX(12px); opacity: 0.7; }
+            100% { transform: rotateY(-120deg) translateX(18px); opacity: 0; }
+        }
+        @keyframes pageTurn2 {
+            0%, 22% { transform: rotateY(0deg) translateX(0); opacity: 0; }
+            36% { opacity: 0.5; }
+            52% { transform: rotateY(-70deg) translateX(6px); opacity: 1; }
+            72% { transform: rotateY(-92deg) translateX(12px); opacity: 0.7; }
+            100% { transform: rotateY(-120deg) translateX(18px); opacity: 0; }
+        }
+        @keyframes pageTurn3 {
+            0%, 38% { transform: rotateY(0deg) translateX(0); opacity: 0; }
+            52% { opacity: 0.5; }
+            68% { transform: rotateY(-68deg) translateX(6px); opacity: 1; }
+            86% { transform: rotateY(-92deg) translateX(12px); opacity: 0.7; }
+            100% { transform: rotateY(-120deg) translateX(18px); opacity: 0; }
+        }
+        @keyframes pageTurn4 {
+            0%, 55% { transform: rotateY(0deg) translateX(0); opacity: 0; }
+            70% { opacity: 0.4; }
+            82% { transform: rotateY(-60deg) translateX(4px); opacity: 1; }
+            100% { transform: rotateY(-100deg) translateX(16px); opacity: 0; }
+        }
+        @keyframes bookFloat {
+            0% { transform: rotate(-2deg) translateY(0); }
+            100% { transform: rotate(2deg) translateY(-6px); }
+        }
+        @keyframes bookmarkSwing {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(12deg); }
+        }
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
         @keyframes spin {
             0%   { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -134,6 +231,19 @@
     </style>
 </head>
 <body>
+    <div id="storyLoader" class="story-loader" aria-live="polite" aria-busy="true">
+        <div>
+            <div class="story-book">
+                <div class="story-page page-1"></div>
+                <div class="story-page page-2"></div>
+                <div class="story-page page-3"></div>
+                <div class="story-page page-4"></div>
+                <div class="story-bookmark"></div>
+            </div>
+            <div class="story-loader__text" id="storyLoaderText">えほんをつくっているよ！</div>
+        </div>
+    </div>
+
     <div class="container">
         <header class="site-header">
             <div class="site-title">ぼくの・わたしのものがたり</div>
@@ -157,5 +267,63 @@
             <p style="margin-top:4px;">© 2026 ぼくの・わたしのものがたり</p>
         </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loader = document.getElementById('storyLoader');
+            const loaderText = document.getElementById('storyLoaderText');
+            if (!loader) return;
+
+            const messages = [
+                'えほんをつくっているよ！',
+                'ちょっとまっててね',
+                'えほんさくせいちゅう。。。',
+                'ものがたりをつくっています。',
+                'どんなえほんができるかな？'
+            ];
+
+            if (loaderText) {
+                const selectedMessage = messages[Math.floor(Math.random() * messages.length)];
+                loaderText.textContent = selectedMessage;
+            }
+
+            const showLoader = function () {
+                loader.classList.add('is-visible');
+            };
+
+            const hideLoader = function () {
+                loader.classList.remove('is-visible');
+            };
+
+            hideLoader();
+
+            window.addEventListener('load', function () {
+                setTimeout(function () {
+                    hideLoader();
+                }, 250);
+            });
+
+            document.addEventListener('click', function (event) {
+                const link = event.target.closest('a');
+
+                if (!link) return;
+
+                const href = link.getAttribute('href') || '';
+                if (!href || href.startsWith('#')) return;
+
+                const isSameOrigin = function (targetUrl) {
+                    try {
+                        return new URL(targetUrl, window.location.origin).origin === window.location.origin;
+                    } catch (error) {
+                        return false;
+                    }
+                };
+
+                if (isSameOrigin(href) && !link.target) {
+                    showLoader();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
