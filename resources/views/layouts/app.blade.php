@@ -275,27 +275,26 @@
             if (!loader) return;
 
             const introMessages = [
-                'えほんのはじまりだよ！',
-                'わくわくのたびがはじまるよ！',
-                'さあ、はじめよう！',
-                'おともだちとぼうけんをつくるよ',
-                'ふしぎなえほんのはじまりだね！'
+                'たのしいえほんをつくろう！',
+                'じぶんだけのえほんをつくっちゃおう！',
+                'おともだちとぼうけんをはじめるよ',
+                'ふしぎなえほんをはじめるよ'
             ];
 
             const creatingMessages = [
                 'えほんをつくっているよ！',
                 'ちょっとまっててね',
-                'えほんをかいているよ！',
-                'ものがたりをつくってるよ！',
-                'どんなえほんができるかな？'
+                'ものがたりをつくってるよ',
+                'どんなえほんができるかな？',
+                'どんなえほんができるかな？ワクワクするね！'
             ];
 
             const homeReturnMessages = [
-                'さいしょにもどるよ'
+                'またきてね！さいしょにもどるよ！'
             ];
 
             const storiesListMessages = [
-                'みんなのえほんをさがしています。'
+                'みんなのえほんをさがしてるよ'
             ];
 
             if (loaderText) {
@@ -338,7 +337,9 @@
                     }
                 };
 
-                const isStoryRoute = /\/stories(?:\/|\?|$)/.test(href) || href.includes('/stories/create');
+                const normalizeHref = href.split('?')[0].replace(/\/$/, '');
+                const hasCreateRoute = normalizeHref === '/stories/create';
+                const hasStoriesListRoute = normalizeHref === '/stories';
 
                 if (isSameOrigin(href) && !link.target && href === '/') {
                     if (loaderText) {
@@ -348,7 +349,15 @@
                     return;
                 }
 
-                if (isSameOrigin(href) && !link.target && href.includes('/stories')) {
+                if (isSameOrigin(href) && !link.target && hasCreateRoute) {
+                    if (loaderText) {
+                        loaderText.textContent = introMessages[Math.floor(Math.random() * introMessages.length)];
+                    }
+                    showLoader();
+                    return;
+                }
+
+                if (isSameOrigin(href) && !link.target && hasStoriesListRoute) {
                     if (loaderText) {
                         loaderText.textContent = storiesListMessages[Math.floor(Math.random() * storiesListMessages.length)];
                     }
@@ -356,7 +365,7 @@
                     return;
                 }
 
-                if (isSameOrigin(href) && !link.target && isStoryRoute) {
+                if (isSameOrigin(href) && !link.target && /\/stories(?:\/|\?|$)/.test(href)) {
                     if (loaderText) {
                         loaderText.textContent = creatingMessages[Math.floor(Math.random() * creatingMessages.length)];
                     }
