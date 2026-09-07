@@ -450,14 +450,6 @@
                 'みんなのえほんをさがしてるよ'
             ];
 
-            if (loaderText) {
-                const pathName = window.location.pathname;
-                const isCreatePage = pathName.includes('/stories/create');
-                const activeMessages = isCreatePage ? creatingMessages : introMessages;
-                const selectedMessage = activeMessages[Math.floor(Math.random() * activeMessages.length)];
-                loaderText.textContent = selectedMessage;
-            }
-
             const showLoader = function () {
                 loader.classList.add('is-visible');
             };
@@ -473,6 +465,25 @@
                     hideLoader();
                 }, 250);
             });
+
+            const pickMessage = function (messages) {
+                return messages[Math.floor(Math.random() * messages.length)];
+            };
+
+            const setLoaderMessage = function (messages) {
+                if (loaderText) loaderText.textContent = pickMessage(messages);
+            };
+
+            const getNavigationMessages = function (targetUrl) {
+                const targetPath = targetUrl.pathname.replace(/\/$/, '') || '/';
+
+                if (targetPath === '/') return homeReturnMessages;
+                if (targetPath === '/stories/create') return introMessages;
+                if (targetPath === '/stories') return storiesListMessages;
+                if (targetPath.startsWith('/stories/')) return creatingMessages;
+
+                return null;
+            };
 
             document.addEventListener('click', function (event) {
                 const link = event.target.closest('a');
@@ -490,39 +501,14 @@
                     }
                 };
 
-                const normalizeHref = href.split('?')[0].replace(/\/$/, '');
-                const hasCreateRoute = normalizeHref === '/stories/create';
-                const hasStoriesListRoute = normalizeHref === '/stories';
+                if (isSameOrigin(href) && !link.target) {
+                    const targetUrl = new URL(href, window.location.origin);
+                    const navigationMessages = getNavigationMessages(targetUrl);
 
-                if (isSameOrigin(href) && !link.target && href === '/') {
-                    if (loaderText) {
-                        loaderText.textContent = homeReturnMessages[Math.floor(Math.random() * homeReturnMessages.length)];
+                    if (navigationMessages) {
+                        setLoaderMessage(navigationMessages);
+                        showLoader();
                     }
-                    showLoader();
-                    return;
-                }
-
-                if (isSameOrigin(href) && !link.target && hasCreateRoute) {
-                    if (loaderText) {
-                        loaderText.textContent = introMessages[Math.floor(Math.random() * introMessages.length)];
-                    }
-                    showLoader();
-                    return;
-                }
-
-                if (isSameOrigin(href) && !link.target && hasStoriesListRoute) {
-                    if (loaderText) {
-                        loaderText.textContent = storiesListMessages[Math.floor(Math.random() * storiesListMessages.length)];
-                    }
-                    showLoader();
-                    return;
-                }
-
-                if (isSameOrigin(href) && !link.target && /\/stories(?:\/|\?|$)/.test(href)) {
-                    if (loaderText) {
-                        loaderText.textContent = creatingMessages[Math.floor(Math.random() * creatingMessages.length)];
-                    }
-                    showLoader();
                 }
             });
 
@@ -533,11 +519,10 @@
                 const action = form.getAttribute('action') || form.action || '';
                 if (!action) return;
 
-                const isStorySubmit = /\/stories(?:\/|\?|$)/.test(action) || action.includes('/stories/create');
+                const submitUrl = new URL(action, window.location.origin);
+                const isStorySubmit = submitUrl.pathname === '/stories' || submitUrl.pathname === '/stories/create';
                 if (isStorySubmit) {
-                    if (loaderText) {
-                        loaderText.textContent = creatingMessages[Math.floor(Math.random() * creatingMessages.length)];
-                    }
+                    setLoaderMessage(creatingMessages);
                     showLoader();
                 }
             });
