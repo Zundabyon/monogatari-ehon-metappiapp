@@ -131,7 +131,7 @@
             inset: 0;
             display: grid;
             place-items: center;
-            background: radial-gradient(circle at top, #f3ead6 0%, #d6c7a7 32%, #2a2f3d 100%);
+            background: radial-gradient(circle at 50% 30%, #fff8e9 0%, #f9e6cb 52%, #e5c7b6 100%);
             z-index: 9999;
             opacity: 0;
             pointer-events: none;
@@ -146,7 +146,7 @@
             width: 230px;
             height: 180px;
             transform: rotate(-2deg);
-            animation: bookFloat 2.2s ease-in-out infinite alternate;
+            animation: bookAppear 0.8s ease-out both, bookFloat 2.2s 0.8s ease-in-out infinite alternate;
         }
         .story-page {
             position: absolute;
@@ -175,12 +175,115 @@
             box-shadow: 0 0 12px rgba(184, 109, 60, 0.45);
             animation: bookmarkSwing 2.2s ease-in-out infinite;
         }
+        .story-bunny {
+            position: absolute;
+            left: 92px;
+            top: 45px;
+            width: 58px;
+            height: 62px;
+            z-index: 3;
+            animation: bunnyPeek 2.6s ease-in-out infinite;
+        }
+        .story-bunny__ear {
+            position: absolute;
+            top: -29px;
+            width: 17px;
+            height: 42px;
+            background: #fff9f2;
+            border: 2px solid #e7b6ad;
+            border-radius: 60% 60% 45% 45%;
+            transform-origin: bottom center;
+        }
+        .story-bunny__ear::after {
+            content: '';
+            position: absolute;
+            inset: 7px 4px 5px;
+            background: #f5c5c1;
+            border-radius: inherit;
+        }
+        .story-bunny__ear--left { left: 8px; transform: rotate(-9deg); }
+        .story-bunny__ear--right { right: 8px; transform: rotate(9deg); }
+        .story-bunny__face {
+            position: absolute;
+            inset: 0;
+            background: #fff9f2;
+            border: 2px solid #e7b6ad;
+            border-radius: 48% 48% 44% 44%;
+            box-shadow: 0 5px 0 rgba(205, 145, 132, 0.12);
+        }
+        .story-bunny__eye {
+            position: absolute;
+            top: 24px;
+            width: 6px;
+            height: 8px;
+            background: #6f4f4b;
+            border-radius: 50%;
+        }
+        .story-bunny__eye--left { left: 16px; }
+        .story-bunny__eye--right { right: 16px; }
+        .story-bunny__nose {
+            position: absolute;
+            left: 25px;
+            top: 34px;
+            width: 8px;
+            height: 6px;
+            background: #e58e91;
+            border-radius: 50%;
+        }
+        .story-bunny__paw {
+            position: absolute;
+            right: -17px;
+            top: 36px;
+            width: 22px;
+            height: 27px;
+            background: #fff9f2;
+            border: 2px solid #e7b6ad;
+            border-radius: 50%;
+            transform-origin: bottom left;
+            animation: bunnyWave 0.8s ease-in-out infinite alternate;
+        }
+        .story-sparkle,
+        .story-flower {
+            position: absolute;
+            z-index: 4;
+            opacity: 0;
+        }
+        .story-sparkle {
+            width: 15px;
+            height: 15px;
+            background: #f3bd58;
+            clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+            animation: sparklePop 2.6s 0.8s ease-in-out infinite;
+        }
+        .story-sparkle--one { left: 37px; top: 35px; }
+        .story-sparkle--two { right: 40px; top: 68px; width: 11px; height: 11px; animation-delay: 1.1s; }
+        .story-flower {
+            width: 13px;
+            height: 13px;
+            background: #ee9da5;
+            border-radius: 50%;
+            box-shadow: 0 -7px 0 #ee9da5, 0 7px 0 #ee9da5, -7px 0 0 #ee9da5, 7px 0 0 #ee9da5;
+            transform: scale(0.2);
+            animation: flowerPop 2.6s 1s ease-in-out infinite;
+        }
+        .story-flower::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 4px;
+            width: 5px;
+            height: 5px;
+            background: #f6cf68;
+            border-radius: 50%;
+        }
+        .story-flower--one { left: 53px; bottom: 32px; }
+        .story-flower--two { right: 28px; bottom: 43px; transform: scale(0.75); animation-delay: 1.25s; }
         .story-loader__text {
             margin-top: 16px;
             font-size: 0.82rem;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.9);
+            color: #805b55;
             animation: textPulse 1.5s ease-in-out infinite;
             font-family: 'Zen Maru Gothic', sans-serif;
         }
@@ -215,6 +318,29 @@
             0% { transform: rotate(-2deg) translateY(0); }
             100% { transform: rotate(2deg) translateY(-6px); }
         }
+        @keyframes bookAppear {
+            0% { opacity: 0; transform: translateY(18px) scale(0.82) rotate(-8deg); }
+            100% { opacity: 1; transform: translateY(0) scale(1) rotate(-2deg); }
+        }
+        @keyframes bunnyPeek {
+            0%, 17% { opacity: 0; transform: translateY(22px) scale(0.8); }
+            31%, 76% { opacity: 1; transform: translateY(0) scale(1); }
+            90%, 100% { opacity: 0; transform: translateY(14px) scale(0.9); }
+        }
+        @keyframes bunnyWave {
+            0% { transform: rotate(18deg); }
+            100% { transform: rotate(-25deg); }
+        }
+        @keyframes sparklePop {
+            0%, 20% { opacity: 0; transform: scale(0.2) rotate(0); }
+            34%, 72% { opacity: 1; transform: scale(1) rotate(90deg); }
+            88%, 100% { opacity: 0; transform: scale(0.2) rotate(180deg); }
+        }
+        @keyframes flowerPop {
+            0%, 30% { opacity: 0; transform: scale(0.2) translateY(8px); }
+            45%, 75% { opacity: 1; transform: scale(1) translateY(0); }
+            90%, 100% { opacity: 0; transform: scale(0.2) translateY(5px); }
+        }
         @keyframes bookmarkSwing {
             0%, 100% { transform: rotate(0deg); }
             50% { transform: rotate(12deg); }
@@ -222,6 +348,19 @@
         @keyframes textPulse {
             0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .story-book,
+            .story-page,
+            .story-bookmark,
+            .story-bunny,
+            .story-bunny__paw,
+            .story-sparkle,
+            .story-flower,
+            .story-loader__text {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
         }
         @keyframes spin {
             0%   { transform: rotate(0deg); }
@@ -239,6 +378,20 @@
                 <div class="story-page page-3"></div>
                 <div class="story-page page-4"></div>
                 <div class="story-bookmark"></div>
+                <div class="story-sparkle story-sparkle--one"></div>
+                <div class="story-sparkle story-sparkle--two"></div>
+                <div class="story-flower story-flower--one"></div>
+                <div class="story-flower story-flower--two"></div>
+                <div class="story-bunny" aria-hidden="true">
+                    <span class="story-bunny__ear story-bunny__ear--left"></span>
+                    <span class="story-bunny__ear story-bunny__ear--right"></span>
+                    <span class="story-bunny__face">
+                        <span class="story-bunny__eye story-bunny__eye--left"></span>
+                        <span class="story-bunny__eye story-bunny__eye--right"></span>
+                        <span class="story-bunny__nose"></span>
+                    </span>
+                    <span class="story-bunny__paw"></span>
+                </div>
             </div>
             <div class="story-loader__text" id="storyLoaderText">えほんをつくっているよ！</div>
         </div>
