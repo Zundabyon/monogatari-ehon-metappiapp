@@ -10,7 +10,7 @@
      style="width:100%;border-radius:12px;border:2px solid #C0DD97;margin-bottom:16px;">
     </picture>
     <div style="font-size:15px;color:#639922;margin-bottom:8px;">
-        きみだけのオリジナルのものがたりをつくろう！
+        きみだけのえほんをつくってみよう！！！
     </div>
     <div style="font-size:14px;color:#639922;margin-bottom:32px;">
         すきなものやなまえをいれると、じぶんだけのものがたりができるよ!
